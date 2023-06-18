@@ -1,0 +1,79 @@
+
+#include <iostream>
+#include <math.h>
+#include <windows.h>
+using namespace std;
+const int n = 5;
+extern "C" float asfun(int x, int n);
+//extern "C" float last(int x);
+extern "C" float fun_el(float z)
+{
+    float f;
+
+    f = (1/tan(z) + sin(z)) / exp(z);
+
+    return f;
+}
+
+extern "C" float* SumR();
+int main(int argc, char** argv)
+{
+    int i;
+    float x;
+    cout << "Input x ,i" << endl;
+    cin >> i /*>> n*/;
+    float* R;
+    R = SumR();
+    for (i = 0; i < 10; i++)
+    {
+        cout << "Result -> " << *R << endl;
+        R++;
+    }
+
+    return 0;
+}
+
+ass:
+.586
+.MODEL flat,C
+.DATA
+ 
+ed dd 0.1
+SUM DD 0.0
+i_local DD 0
+arrx dd 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+arry dd 10 dup (0.0)
+ 
+.CODE
+extern fun_el:near 
+public SumR
+SumR proc C
+ 
+
+ 
+mov esi, arrx
+mov ecx, 0      
+L1:            
+ 
+
+mov esi, offset arrx
+call fun_el
+add esi, 4
+ 
+
+fld arry[ecx*4]
+fadd 
+fstp arry[ecx*4]
+ 
+ 
+inc ecx;         
+cmp ecx, 10;         
+JL L1;           
+ 
+fld arry
+mov esp, ebp
+pop ebp
+ret
+ 
+SumR endp
+End
