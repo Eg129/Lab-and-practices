@@ -1,0 +1,5 @@
+﻿  Assembling Source.asm...
+Debug\Source.obj : warning LNK4042: объект указан более одного раза; лишние не учитываются
+Source.obj : error LNK2019: ссылка на неразрешенный внешний символ _func в функции _asfun.
+LINK : error LNK2001: неразрешенный внешний символ _mainCRTStartup.
+C:\Users\user\source\repos\Project2q22.asm\Debug\Project2q22.asm.exe : fatal error LNK1120: неразрешенных внешних элементов: 2
